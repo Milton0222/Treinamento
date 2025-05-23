@@ -1,0 +1,700 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+.principal {
+    overflow: hidden;
+    height: 100vh;
+    background: linear-gradient(rgb(53, 53, 53), rgb(255, 234, 100));
+}
+
+.principal .menuSuperio {
+    width: 100%;
+    height: 10vh;
+    background-color: aliceblue;
+    box-shadow: 1px 2px rgb(3, 99, 190);
+}
+.principal .menuSuperio .user{
+    display: flex;
+    padding-top: 10px;
+}
+.principal .menuSuperio .user .dashboard{
+      width: 50%;
+     
+}
+.principal .menuSuperio .user .dashboard a{
+       text-decoration: none;
+       color: #000;
+       height:6vh;
+       font-size: 24pt;
+       text-align: center;
+      
+       margin-left: 15px;
+        border-radius: 10px;
+        box-shadow: 1px 2px rgba(22, 114, 185, 0.609);
+       
+}
+.principal .menuSuperio .user .dashboard a:hover{
+      font-size: 20pt;
+      transition: 10s;
+         background-color: #acc4d0;
+            box-shadow: 1px 2px #bbbd79;
+}
+.principal .menuSuperio .user .perfil{
+      width: 50%;
+}
+.principal .menuSuperio .user .perfil select{
+     float: right;
+      height: 6vh;
+      width: 35%;
+      background-color: #bbbd79;
+      border-radius: 5px;
+      margin-right: 5px;
+      font-size: medium;
+      font-style: inherit;
+      font-family:  Georgia, Times, 'Times New Roman', serif;
+}
+
+.principal .conteudo {
+    display: flex;
+
+}
+
+/*Formatar o menu esquerdo*/
+.principal .conteudo .menuEsquerdo {
+
+    height: 89vh;
+    width: 20%;
+    margin-right: 5px;
+    background: transparent;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-right-radius: 5px;
+
+    box-shadow: 2px 1px rgb(3, 99, 190);
+}
+
+.principal .conteudo .menuEsquerdo ul {
+    margin: 30px;
+    margin-top: 80px;
+
+}
+
+.principal .conteudo .menuEsquerdo li {
+
+    list-style: none;
+    margin-bottom: 10px;
+    
+}
+.principal .conteudo .menuEsquerdo ul li {
+
+    margin-top: 20px;
+    font-size: 16pt;
+    box-shadow: 1px 2px rgb(3, 99, 190);
+    
+}
+.principal .conteudo .menuEsquerdo ul li:hover {
+
+        border-radius: 10px;
+       transition: 1s;
+    
+}
+
+.principal .conteudo .menuEsquerdo a {
+
+    text-decoration: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: inherit;
+    color: whitesmoke;
+    text-decoration: wavy;
+    text-decoration-color: rgb(28, 110, 244);
+
+
+}
+
+.principal .conteudo .menuEsquerdo ul .sair {
+    margin-top: 90%;
+    background: linear-gradient(rgb(3, 99, 190), rgb(255, 234, 100));
+    text-align: center;
+    color: white;
+    height: 25px;
+    padding-top: 5px;
+    border-radius: 20px;
+    box-shadow: 2px 1px rgb(12, 12, 12);
+}
+
+.principal .conteudo .menuEsquerdo .ativar {
+    text-align: center;
+    border-style: none;
+    color: white;
+    box-shadow: 1px 2px rgb(3, 99, 190);
+    border-radius: 20px;
+    height: 25px;
+    padding-top: 10px;
+}
+.principal .conteudo .menuEsquerdo .ativar:hover {
+    background: linear-gradient(rgb(3, 99, 190), rgb(255, 234, 100));
+       transition: 1s;
+       border-radius: 10px;
+       margin-top: 3px;
+
+}
+
+.principal .conteudo .graficos {
+    margin-top: 5px;
+    height: 88vh;
+    width: 65%;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background-color: aliceblue;
+    border-radius: 5px;
+    box-shadow: 1px 2px rgb(3, 99, 190);
+    overflow: auto;
+}
+
+.principal .conteudo .graficos .form{
+    display: flex;
+    margin: auto;
+    margin-top: 20px;
+    width: 100%;
+    box-shadow: 2px 2px rgb(3, 99, 190);
+    height: 50px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  
+}
+.principal .conteudo .graficos form .gsearch{
+    margin-left: 50px;
+    float: right;
+}
+.principal .conteudo .graficos form .gsearch input{
+    width: 300px;
+    height: 40px;
+    border-radius: 30px;
+    
+    border-color: rgb(121, 121, 18);
+    background-color:rgb(182, 201, 219);
+}
+.principal .conteudo .graficos form .gsearch button{
+    
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: rgb(121, 121, 18);
+    width: 50px;
+    height: 44px;
+    border-style: dashed;
+    margin-left: -30px;
+    border-color: rgb(121, 121, 18);
+}
+
+
+
+.principal .conteudo .detalhesDireito {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    height: 88vh;
+    width: 25%;
+    border-radius: 5px;
+    background-color: aliceblue;
+    box-shadow: 1px 2px rgb(3, 99, 190);
+    overflow: auto;
+}
+
+
+/*  FORMATAR painel gerir dados */
+
+
+.principal .conteudo .graficos1 {
+    margin-top: 5px;
+    height: 88vh;
+    width: 80%;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background-color: aliceblue;
+    border-radius: 5px;
+    box-shadow: 1px 2px rgb(3, 99, 190);
+    overflow: auto;
+}
+
+.principal .conteudo .graficos1 .form{
+    display: flex;
+    margin: auto;
+    margin-top: 20px;
+    width: 100%;
+    box-shadow: 2px 2px rgb(3, 99, 190);
+    height: 50px;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  
+}
+.principal .conteudo .graficos1 form .gsearch{
+    margin-left: 350px;
+    float: right;
+}
+.principal .conteudo .graficos1 form .gsearch input{
+    width: 300px;
+    height: 40px;
+    border-radius: 30px;
+    
+    border-color: rgb(121, 121, 18);
+    background-color:rgb(182, 201, 219);
+}
+.principal .conteudo .graficos1 form .gsearch button{
+    
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    background-color: rgb(121, 121, 18);
+    width: 50px;
+    height: 44px;
+    border-style: dashed;
+    margin-left: -30px;
+    border-color: rgb(121, 121, 18);
+}
+/* estilizando botao criar projecto*/
+
+.principal .conteudo .graficos1 a{
+    text-decoration: none;
+    margin-left: 10px;
+    font-size: 30pt;
+    border-radius: 30%;
+    box-shadow: 1px 2px  rgb(24, 78, 149);
+    color: white;
+    background: linear-gradient(rgb(2, 59, 87),rgb(51, 97, 161));
+}
+
+/*criiando cartao*/
+
+.principal .conteudo .graficos .cartao{
+    display: flex;
+    padding-top: 5px;
+ 
+}
+.principal .conteudo .graficos .cartao .item{
+        margin: auto;
+       width: 30%;
+       height: 18vh;
+       border-radius: 10px;
+      background: linear-gradient(rgb(34, 33, 33), rgb(255, 234, 100));
+}
+.principal .conteudo .graficos .cartao .item .info{
+        display: flex;
+        margin: auto;
+}
+.principal .conteudo .graficos .cartao .item .info div{
+        margin: 10px;
+}
+.principal .conteudo .graficos .cartao .item .info div h1{
+       float: right;
+       margin-left: 70px;
+}
+.principal .conteudo .graficos .cartao .item .info div a{
+       float: left;
+      text-decoration: none;
+      color: white;
+      font-style: bold;
+}
+
+/*estelizando a tag table*/
+
+
+table {
+    caption-side: bottom;
+    border-collapse: collapse;
+    margin-top: 50px;
+  }
+  
+  caption {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    color: #6c757d;
+    text-align: left;
+  }
+  
+  th {
+    text-align: inherit;
+    text-align: -webkit-match-parent;
+  }
+  
+  thead,
+  tbody,
+  tfoot,
+  tr,
+  td,
+  th {
+    border-color: inherit;
+    border-style: solid;
+    border-width: 0;
+  }
+  
+  label {
+    display: inline-block;
+  }
+
+  
+.table {
+    --bs-table-color: var(--bs-body-color);
+    --bs-table-bg: transparent;
+    --bs-table-border-color: var(--bs-border-color);
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: var(--bs-body-color);
+    --bs-table-striped-bg: rgba(0, 0, 0, 0.05);
+    --bs-table-active-color: var(--bs-body-color);
+    --bs-table-active-bg: rgba(0, 0, 0, 0.1);
+    --bs-table-hover-color: var(--bs-body-color);
+    --bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+    width: 100%;
+    margin-bottom: 1rem;
+    color: var(--bs-table-color);
+    vertical-align: top;
+    border-color: var(--bs-table-border-color);
+    margin-top: 30px;
+  }
+  .table > :not(caption) > * > * {
+    padding: 0.5rem 0.5rem;
+    background-color: var(--bs-table-bg);
+    border-bottom-width: 1px;
+    box-shadow: inset 0 0 0 9999px var(--bs-table-accent-bg);
+  }
+  .table > tbody {
+    vertical-align: inherit;
+  }
+  .table > thead {
+    vertical-align: bottom;
+     background: linear-gradient(rgb(34, 33, 33), rgb(255, 234, 100));
+   
+  }
+  
+  .table-group-divider {
+    border-top: 2px solid currentcolor;
+  }
+  
+  .caption-top {
+    caption-side: top;
+  }
+  
+  .table-sm > :not(caption) > * > * {
+    padding: 0.25rem 0.25rem;
+  }
+  
+  .table-bordered > :not(caption) > * {
+    border-width: 1px 0;
+  }
+  .table-bordered > :not(caption) > * > * {
+    border-width: 0 1px;
+  }
+  
+  .table-borderless > :not(caption) > * > * {
+    border-bottom-width: 0;
+  }
+  .table-borderless > :not(:first-child) {
+    border-top-width: 0;
+  }
+  
+  .table-striped > tbody > tr:nth-of-type(odd) > * {
+    --bs-table-accent-bg: var(--bs-table-striped-bg);
+    color: var(--bs-table-striped-color);
+  }
+  
+  .table-striped-columns > :not(caption) > tr > :nth-child(even) {
+    --bs-table-accent-bg: var(--bs-table-striped-bg);
+    color: var(--bs-table-striped-color);
+  }
+  
+  .table-active {
+    --bs-table-accent-bg: var(--bs-table-active-bg);
+    color: var(--bs-table-active-color);
+  }
+  
+  .table-hover > tbody > tr:hover > * {
+    --bs-table-accent-bg: var(--bs-table-hover-bg);
+    color: var(--bs-table-hover-color);
+  }
+  
+  .table-primary {
+    --bs-table-color: #000;
+    --bs-table-bg: #cfe2ff;
+    --bs-table-border-color: #bacbe6;
+    --bs-table-striped-bg: #c5d7f2;
+    --bs-table-striped-color: #000;
+    --bs-table-active-bg: #bacbe6;
+    --bs-table-active-color: #000;
+    --bs-table-hover-bg: #bfd1ec;
+    --bs-table-hover-color: #000;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+  }
+  
+  .table-secondary {
+    --bs-table-color: #000;
+    --bs-table-bg: #e2e3e5;
+    --bs-table-border-color: #cbccce;
+    --bs-table-striped-bg: #d7d8da;
+    --bs-table-striped-color: #000;
+    --bs-table-active-bg: #cbccce;
+    --bs-table-active-color: #000;
+    --bs-table-hover-bg: #d1d2d4;
+    --bs-table-hover-color: #000;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+  }
+  
+  .table-success {
+    --bs-table-color: #000;
+    --bs-table-bg: #d1e7dd;
+    --bs-table-border-color: #bcd0c7;
+    --bs-table-striped-bg: #c7dbd2;
+    --bs-table-striped-color: #000;
+    --bs-table-active-bg: #bcd0c7;
+    --bs-table-active-color: #000;
+    --bs-table-hover-bg: #c1d6cc;
+    --bs-table-hover-color: #000;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+  }
+  
+  .table-info {
+    --bs-table-color: #000;
+    --bs-table-bg: #cff4fc;
+    --bs-table-border-color: #badce3;
+    --bs-table-striped-bg: #c5e8ef;
+    --bs-table-striped-color: #000;
+    --bs-table-active-bg: #badce3;
+    --bs-table-active-color: #000;
+    --bs-table-hover-bg: #bfe2e9;
+    --bs-table-hover-color: #000;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+  }
+  
+  .table-warning {
+    --bs-table-color: #000;
+    --bs-table-bg: #fff3cd;
+    --bs-table-border-color: #e6dbb9;
+    --bs-table-striped-bg: #f2e7c3;
+    --bs-table-striped-color: #000;
+    --bs-table-active-bg: #e6dbb9;
+    --bs-table-active-color: #000;
+    --bs-table-hover-bg: #ece1be;
+    --bs-table-hover-color: #000;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+  }
+  
+  .table-danger {
+    --bs-table-color: #000;
+    --bs-table-bg: #f8d7da;
+    --bs-table-border-color: #dfc2c4;
+    --bs-table-striped-bg: #eccccf;
+    --bs-table-striped-color: #000;
+    --bs-table-active-bg: #dfc2c4;
+    --bs-table-active-color: #000;
+    --bs-table-hover-bg: #e5c7ca;
+    --bs-table-hover-color: #000;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+  }
+  
+  .table-light {
+    --bs-table-color: #000;
+    --bs-table-bg: #f8f9fa;
+    --bs-table-border-color: #dfe0e1;
+    --bs-table-striped-bg: #ecedee;
+    --bs-table-striped-color: #000;
+    --bs-table-active-bg: #dfe0e1;
+    --bs-table-active-color: #000;
+    --bs-table-hover-bg: #e5e6e7;
+    --bs-table-hover-color: #000;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+  }
+  
+  .table-dark {
+    --bs-table-color: #fff;
+    --bs-table-bg: #212529;
+    --bs-table-border-color: #373b3e;
+    --bs-table-striped-bg: #2c3034;
+    --bs-table-striped-color: #fff;
+    --bs-table-active-bg: #373b3e;
+    --bs-table-active-color: #fff;
+    --bs-table-hover-bg: #323539;
+    --bs-table-hover-color: #fff;
+    color: var(--bs-table-color);
+    border-color: var(--bs-table-border-color);
+  }
+  
+  .table-responsive {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  @media (max-width: 575.98px) {
+    .table-responsive-sm {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+  @media (max-width: 767.98px) {
+    .table-responsive-md {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+  @media (max-width: 991.98px) {
+    .table-responsive-lg {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+  @media (max-width: 1199.98px) {
+    .table-responsive-xl {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+  @media (max-width: 1399.98px) {
+    .table-responsive-xxl {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  /*estelizando area para cadstrar projecto*/
+
+  .principal .graficos1 .row{
+      display: flex;
+  
+  }
+  .principal .graficos1 .row .col form{
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px white;
+    margin: 30px;
+    margin-top: 40px;
+  }
+  .principal .graficos1 .row .col{
+     height: 88vh;
+     width: 50%;
+  }
+   .principal .graficos1 .row .col input{
+     width: 450px;
+    border-radius: 20px;
+    margin: auto;
+    height: 30px;
+    background-color: rgb(169, 169, 119);
+    border-style: double;
+    border-color: rgb(6, 77, 200);
+  }
+   .principal .graficos1 .row .col select{
+     width: 450px;
+    border-radius: 20px;
+    margin: auto;
+    height: 30px;
+    background-color: rgb(169, 169, 119);
+    border-style: double;
+    border-color: rgb(6, 77, 200);
+  }
+
+   .principal .graficos1 .row .col textarea{
+    width: 450px;
+    border-radius: 5px;
+    background-color: rgb(169, 169, 119);
+    border-style: double;
+    border-color: rgb(6, 77, 200);
+    
+  }
+  .principal .graficos1 .row .col .grupo{
+     display: flex;
+  }
+    .principal .graficos1 .row .col .grupo input {
+                width: 150px;
+  }
+
+  .principal .graficos1 .row .col .botao button {
+    margin: auto;
+    margin-top: 30px;
+    margin-left: 14px;
+    width: 200px;
+    height: 30px;
+    border-radius: 20px;
+    box-shadow: 1px 2px;
+    background: linear-gradient(rgb(3, 99, 190), rgb(255, 234, 100));
+ 
+}
+.principal .graficos1 .row .col .botao button:hover {
+
+    border-radius: 30px;
+    border-color: rgba(66, 3, 3, 0.634);
+}
+
+p {
+    text-align: justify;
+    font-family:  Arial, Helvetica, sans-serif;
+    font-size: 12pt;
+}
+.principal .graficos1 .row .col h4 {
+
+    margin: auto;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 24pt;
+
+
+}
+
+/* ocultando inputt*/
+.idcode{
+  display: none;
+}
+
+  /*metodos na table*/
+
+  td div{
+    display: flex;
+ 
+  }
+  td div form{
+    margin-left: 20px;
+  }
+  td form button{
+    margin-left: 10px;
+    height: 30px;
+    width: 100%;
+    color: white;
+    border-radius: 10px;
+    border-style: none;
+    text-align: center;
+  }
+   td form .apagar:hover{
+
+    height: 30px;
+    width: 70px;
+    color: white;
+    transition: 3s;
+    background: linear-gradient(red, rgb(140, 127, 10));
+
+   
+  }
+    td form .atualizar:hover{
+
+    height: 30px;
+    width: 70px;
+    color: white;
+    transition: 3s;
+    background: linear-gradient( rgb(140, 127, 10),rgb(49, 96, 171));
+
+   
+  }
+  td form .apagar{
+    background-color: rgb(183, 6, 6);
+  } 
+    td form .atualizar{
+    background-color: rgb(13, 117, 177);
+  } 
+  

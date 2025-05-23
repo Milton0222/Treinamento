@@ -1,0 +1,277 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    height: 700PX;
+    overflow: hidden;
+    background: linear-gradient(rgb(53, 53, 53), rgb(255, 234, 100));
+}
+
+/*Estelizando o menu*/
+.header {
+    width: 100%;
+    height: 300px;
+    background-image: url('fundo.jpg');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    margin: 0px;
+    box-shadow: 1px 2px rgb(3, 99, 190);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+/*Estilizando o menu, mudando a forma de visualização*/
+
+.header ul {
+    margin: auto;
+    display: flex;
+    margin-top: 190px;
+    align-items: center;
+}
+
+.header ul li {
+    margin-top: 20px;
+    margin-left: 30px;
+    width: 150px;
+    height: 70px;
+    padding-top: 20px;
+    text-align: center;
+    background: linear-gradient(rgb(255, 234, 100), rgb(23, 23, 23));
+    list-style: none;
+    border-radius: 30px;
+    margin: auto;
+}
+
+.header ul li a {
+    text-decoration: none;
+    text-align: center;
+    font-size: 24pt;
+    color: whitesmoke;
+    margin: auto;
+
+
+}
+
+.header ul li:hover {
+
+    transition: 2s;
+    background: linear-gradient(rgb(227, 177, 11), rgb(3, 99, 190));
+    border-radius: 2px;
+}
+
+/* formatar logo marca*/
+.header .logo a {
+    text-decoration: none;
+    color: rgb(177, 5, 5);
+    font-size: 20pt;
+    text-align: center;
+    margin-left: 50px;
+    box-shadow: 1px 2px blue;
+    border-radius: 50%;
+}
+
+.header .logo {
+    background: transparent;
+    border-radius: 50px;
+
+}
+
+
+
+/*Estelizando o corpo onde vai aparecer o conteudo*/
+.contente {
+    height: 150px;
+    display: flex;
+    margin: auto;
+
+}
+
+.contente .but {
+
+    margin-top: 10%;
+    margin-left: 40%;
+    padding-left: 40px;
+
+}
+
+/*Estelizando o rodape*/
+.footer {
+
+    display: flex;
+    background-color: black;
+    height: 250px;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    margin: auto;
+
+
+}
+
+.footer .info {
+
+    color: whitesmoke;
+    margin-right: 20%;
+    margin-top: 2px;
+    margin-left: 70px;
+
+}
+
+.footer .info ul a {
+    text-decoration: none;
+    color: white;
+}
+
+.footer .info h4 {
+    font-size: 18pt;
+    border-radius: 30px;
+    text-align: center;
+    background: linear-gradient(rgb(56, 78, 90), rgb(10, 10, 10));
+}
+
+.footer .info ul {
+    margin-left: 10px;
+}
+
+.contente .but a {
+    text-decoration: none;
+    text-align: center;
+    background: linear-gradient(rgb(30, 129, 183), rgb(10, 10, 10));
+}
+
+
+/* 
+    estelizando o formulario cadastro
+*/
+
+.form {
+    margin: auto;
+    margin-top: 60px;
+    height: 500px;
+    background: linear-gradient(rgb(187, 179, 23), rgb(11, 114, 198));
+    width: 1000px;
+    display: flex;
+    border-radius: 30px;
+    box-shadow: 2px 4px black;
+
+}
+
+.form .grupo {
+    display: flex;
+    margin: auto;
+    margin-left: 5px;
+}
+
+.form .formulario .botao {
+    display: flex;
+    margin: auto;
+    margin-top: 30px;
+
+}
+
+.form .formulario .botao button {
+    margin: auto;
+    width: 100px;
+    height: 30px;
+    border-radius: 20px;
+    border-color: rgba(152, 19, 19, 0.634);
+}
+
+.form .formulario .botao button:hover {
+
+    border-radius: 30px;
+    border-color: rgba(66, 3, 3, 0.634);
+}
+
+.form form input {
+    width: 450px;
+    border-radius: 20px;
+    margin: auto;
+    height: 30px;
+    background-color: rgb(190, 222, 241);
+    border-style: double;
+    border-color: rgb(6, 77, 200);
+}
+
+.form form .grupo input {
+    width: 150px;
+}
+.form form .grupo1{
+     display: flex;
+}
+
+.form form .grupo1 input{
+   width: 225px;
+}
+
+form {
+    margin: auto;
+}
+
+.form form textarea {
+    width: 450px;
+    border-radius: 5px;
+    background-color: rgb(190, 222, 241);
+    border-style: double;
+    border-color: rgb(6, 77, 200);
+}
+
+.form .formulario label {
+
+    float: left;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: larger;
+    margin: 5px;
+}
+
+.form .formDireito {
+    width: 450px;
+    margin: auto;
+
+}
+
+.form .formDireito p {
+    text-align: justify;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12pt;
+}
+
+.form .formulario {
+    width: 450px;
+    margin: auto;
+
+
+}
+
+.form .formDireito h4 {
+
+    margin: auto;
+    text-align: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-size: 24pt;
+
+
+}
+
+.form .formDireito .home a {
+    text-decoration: none;
+    float: right;
+    border-radius: 50%;
+    color: rgb(10, 53, 195);
+    width: 100px;
+    font-size: 14pt;
+    text-align: center;
+    box-shadow: 2px 2px rgb(163, 3, 3);
+    margin-top: 20px;
+}
+
+.form .formDireito .home a:hover {
+    background-color: brown;
+    box-shadow: 2px 1px rgb(14, 13, 13);
+    color: white;
+
+}
+
+
