@@ -663,7 +663,16 @@ p {
     margin-left: 20px;
   }
   td form button{
-    margin-left: 10px;
+    margin-left: 5px;
+    height: 30px;
+    width: 100%;
+    color: white;
+    border-radius: 10px;
+    border-style: none;
+    text-align: center;
+  }
+  td button{
+    margin-left: 5px;
     height: 30px;
     width: 100%;
     color: white;
@@ -691,10 +700,68 @@ p {
 
    
   }
+  td .atualizar:hover{
+
+    height: 30px;
+    width: 70px;
+    color: white;
+    transition: 3s;
+    background: linear-gradient( rgb(140, 127, 10),rgb(49, 96, 171));
+
+   
+  }
   td form .apagar{
     background-color: rgb(183, 6, 6);
   } 
     td form .atualizar{
     background-color: rgb(13, 117, 177);
   } 
+    td .atualizar{
+    background-color: rgb(13, 117, 177);
+  } 
+  td div .pessoal{
+    background-color:rgb(16, 110, 16);
+     margin-left: 10px;
+    height: 30px;
+    width: 70px;
+    color: white;
+    border-radius: 10px;
+    border-style: none;
+    text-align: center;
+  }
+  td div .pessoal:hover{
+     height: 30px;
+    width: 70px;
+    color: white;
+    transition: 3s;
+    background: linear-gradient( rgb(124, 114, 23),rgb(55, 150, 29));
+
+  }
+   
+  td div button{
+    margin-left: 10px;
+    height: 30px;
+    width: 70px;
+    color: white;
+    border-radius: 10px;
+    border-style: none;
+    text-align: center;
+  }
+    td div .apagar:hover{
+
+    height: 30px;
+    width: 70px;
+    color: white;
+    transition: 3s;
+    background: linear-gradient(red, rgb(140, 127, 10));
+
+   
+  }
+   td div .apagar{
+    background-color: rgb(183, 6, 6);
+  } 
+
+  /*  modal bootstrapp*/
+
+
   

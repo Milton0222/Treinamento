@@ -4,9 +4,8 @@
 <head>
      <meta charset="UTF-8">
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <title>Funcionarios</title>
-
-      <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+     <title>Grupo-Pessoal</title>
+     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
      <link rel="stylesheet" href="dasboard.css">
      <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -23,16 +22,31 @@
                          <?php
                          require_once("../controller/conexao.php");
 
-                           $sql = "SELECT *FROM pessoal;";
+                         $id_grupo = $_POST['idGrupo'];
+
+                         $sql = "SELECT *FROM pessoal;";
 
                          $resultado = mysqli_query($conector, $sql);
 
-                         $sql="SELECT *FROM empresas LIMIT 1;";
+                         $sql = "SELECT *FROM empresas LIMIT 1;";
 
-                         $empresa=mysqli_query($conector,$sql);
+                         $empresa = mysqli_query($conector, $sql);
 
                          $totalregisto = mysqli_num_rows($resultado);
 
+                         $sql = "SELECT grupos.designacao,grupos.qtdPessoal,grupos.id,grupos.supervisor,projetos.designacao AS 'projeto'
+                                      ,pessoal.nome, pessoal.contacto,pessoal.funcao,pessoal.id as 'pessoa_id'
+                                    FROM grupo_pessoal JOIN grupos ON(grupo_pessoal.grupo=grupos.id)
+   						                    	JOIN	pessoal ON(pessoal.id=grupo_pessoal.pessoa_id)
+   						                    	JOIN projetos ON(grupos.projeto_id=projetos.id)
+                                    where grupos.id=$id_grupo;";
+
+                         $grupo = mysqli_query($conector, $sql);
+
+
+                       
+
+                         mysqli_close($conector);
                          ?>
                     </div>
                     <div class="perfil">
@@ -58,13 +72,13 @@
                               <li> <i class='bxr  bx-community'></i> <strong>Grupos</strong></li>
                          </a>
                          <a href="tarefas.php">
-                              <li><i class='bxr  bx-calendar-check'  ></i> <strong>Tarefas</strong></li>
+                              <li><i class='bxr  bx-calendar-check'></i> <strong>Tarefas</strong></li>
                          </a>
                          <a href="projectos.php">
-                              <li><i class='bxr  bx-list-square'  ></i> <strong>Projetos</strong></li>
+                              <li><i class='bxr  bx-list-square'></i> <strong>Projetos</strong></li>
                          </a>
                          <a href="pessoas.php">
-                              <li><i class='bxr  bx-user'  ></i> <strong>Funcionarios</strong></li>
+                              <li><i class='bxr  bx-user'></i> <strong>Funcionarios</strong></li>
                          </a>
                          <a href="">
                               <li class="sair"><i class='bxr  bx-flower-alt-2'></i> <!--<strong>Definição</strong>--></li>
@@ -73,27 +87,27 @@
 
                </div>
                <div class="graficos1">
-                     <table class="table" style="margin-top: 0px;">
-                           <thead>
-                              <?php 
-                                 while($listae=mysqli_fetch_assoc($empresa)){ 
-                                      $firma=$listae['designacao'];
-                                      $email=$listae['objectivo'];
-                                      $nif=$listae['nif'];
-                                      $telefone=$listae['contacto'];
+                    <table class="table" style="margin-top: 0px;">
+                         <thead>
+                              <?php
+                              while ($listae = mysqli_fetch_assoc($empresa)) {
+                                   $firma = $listae['designacao'];
+                                   $email = $listae['objectivo'];
+                                   $nif = $listae['nif'];
+                                   $telefone = $listae['contacto'];
 
-                                  echo" <th>Firma: <td>$firma</td></th><th>NIF: <td>$nif</td></th><th>Contacto: <td>$telefone</td></th><th>Objectivo: <td>$email</td></th>";
-                                 }
-                             ?>
-                                
-                           </thead>
+                                   echo " <th>Firma: <td>$firma</td></th><th>NIF: <td>$nif</td></th><th>Contacto: <td>$telefone</td></th><th>Objectivo: <td>$email</td></th>";
+                              }
+                              ?>
 
-                     </table>
+                         </thead>
+
+                    </table>
                     <form action="" method="get" class="form">
-                         <h3>GESTÃO DE PESSOAL</h3>
-                     <a href="pessoaCriar.php"><strong>+</strong></a>
+                         <h3>Grupos e Pessoal</h3>
+                         <a href="pessoaCriar.php"><strong>+</strong></a>
                          <div class="gsearch">
-                                  
+
                               <input type="text" name="search" placeholder="Informe o parametro de pesquisa" required>
                               <button type="submit">Buscar</button>
 
@@ -101,66 +115,47 @@
                     </form>
                     <table class="table">
                          <thead>
-                              <th>id</th>
-                              <th>Nome</th>
-                               <th>Função</th>
+                              <th>Grupo</th>
+                              <th>Projecto</th>
+                              <th>Técnico</th>
+                              <th>Função</th>
                               <th>Contacto</th>
-                        
-                              
+
+
                               <th>Metódo</th>
                          </thead>
                          <tbody>
-                             
+
                               <?php
 
-                              while ($dados = mysqli_fetch_assoc($resultado)) {
-                                     $id = $dados['id'];
+                              while ($dados = mysqli_fetch_assoc($grupo)) {
+                                   $id = $dados['id'];
+                                   $pid=$dados['pessoa_id'];
+                                   $projeto1 = $dados['projeto'];
                                    $nome = $dados['nome'];
                                    $funcao = $dados['funcao'];
                                    $contato = $dados['contacto'];
-                               
+                                   $gruponome = $dados['designacao'];
+
 
 
                                    echo "  <tr>
-                                             <td>$id</td>
+                                   <td>$gruponome</td>
+                                             <td>$projeto1</td>
                                              <td>$nome</td>
                                              <td>$funcao</td>
                                              <td>$contato</td>
                                              <td>
                                              <div>
-                                                   
-
-<button type='button' class=apagar  data-bs-toggle='modal' data-bs-target='#exampleModal$id'><i class=bxr  bx-trash-x></i> Apagar</button>
-<div class='modal fade' id='exampleModal$id' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' >
-  <div class='modal-dialog'>
-    <div class='modal-content'>
-      <div class='modal-header'>
-        <h5 class='modal-title' id='exampleModalLabel'>Desejas  apagar o projecto $nome ?</h5>
-        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
-      </div>
-      <div class='modal-body'>
-
-             
-        <form action='../controller/pessoalController/deletePessoa.php' method='post'>
-           <input type='hidden' value='$id' name='idcode'>
-     <div class='modal-footer' style='display:flex;'>
-        <button type='button' class='btn btn-primary' data-bs-dismiss='modal'>Não</button>
-        <button type='submit' class='btn btn-danger'>Sim</button>
-      </div>               
-                                                       
-      </form>
-
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-                                   <form action='../controller/pessoalController/updatePessoa.php' method='post'>
-                                        <input type='hidden' value='$id' name='idcode'>
-                                      
-                                                        <button type=submit class=atualizar><i class=bxr bx-pencil-square></i>Atualizar</button>
-                                   </form>
+                                                       <form action='definirTarefa.php' method='post'>
+                                                            <input type='hidden' value='$id' name='idcode'>
+                                                            <input type='hidden' value='$pid' name='idpessoa'>
+                                                       <div class='modal-footer' style='display:flex;'>
+                                                       <button type='submit' class='atualizar' >Definir</button>
+                                                       </div>               
+                                                                                                         
+                                                       </form>
+                                  
                                                </div>
                                                       
                                              </td>
@@ -169,12 +164,12 @@
                                         </tr>";
                               }
 
-                              mysqli_close($conector);
                               ?>
+
                          </tbody>
                     </table>
                     <td class="grupo-metodo">
-                         
+
                     </td>
 
                </div>

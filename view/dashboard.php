@@ -16,6 +16,30 @@
       <div class="user">
         <div class="dashboard">
           <a href="dashboard.php">DASHBOARD</a>
+              <?php 
+                  include_once('../controller/conexao.php');
+
+                       $sql="SELECT tarefas.id, tarefas.designacao, tarefas.estado,tarefas.data_inicio,tarefas.data_conclusao,
+                                   pessoal.id AS 'pessoa_id', pessoal.nome, projetos.designacao AS 'projeto'
+                             FROM tarefas JOIN pessoal_tarefas ON(tarefas.id=pessoal_tarefas.tarefa_id)
+  				                              	JOIN pessoal ON(pessoal.id=pessoal_tarefas.pessoa_id)
+  					                              JOIN projetos ON(projetos.id=tarefas.id_projeto)
+  	                       	ORDER BY  pessoal_tarefas.data_atribuicao	DESC ;";
+
+                          $tarefas=mysqli_query($conector,$sql);
+
+                          $qlq="SELECT COUNT(*) AS 'qtd' FROM projetos;";
+
+                             $projetos=mysqli_query($conector,$sql);
+
+                          
+                                 
+
+
+                          mysqli_close($conector);
+
+
+              ?>
         </div>
         <div class="perfil">
               <select name="" id="">
@@ -37,7 +61,7 @@
                               <li> <i class='bxr  bx-community'></i> <strong>Grupos</strong></li>
                          </a>
                          <a href="tarefas.php">
-                              <li><i class='bxr  bx-calendar-check'  ></i> <strong>Tarefas</strong></li>
+                              <li><i class='bxr  bx-calendar-check'></i> <strong>Tarefas</strong></li>
                          </a>
                          <a href="projectos.php">
                               <li><i class='bxr  bx-list-square'  ></i> <strong>Projetos</strong></li>
@@ -56,7 +80,7 @@
           <div class="item">
             <div class="info">
               <div>
-                <a href="">ICON</a>
+                <a href=""><i class='bxr  bx-community'></i></a>
               </div>
               <div>
                 <h1>+1</h1>
@@ -68,7 +92,7 @@
           <div class="item">
             <div class="info">
               <div>
-                <a href="">ICON</a>
+                <a href=""><i class='bxr  bx-list-square'  ></i></a>
               </div>
               <div>
                 <h1>+1</h1>
@@ -80,10 +104,10 @@
           <div class="item">
             <div class="info">
               <div>
-                <a href="">ICON</a>
+                <a href=""><i class='bxr  bx-calendar-check'></i></a>
               </div>
               <div>
-                <h1>+1</h1>
+                <h1>+1 </h1>
               </div>
             </div>
             <hr>
@@ -118,13 +142,26 @@
             <th>Data de conclusão</th>
           </thead>
           <tbody>
-            <tr>
-              <td></td>
-              <td></td>
-              <td></td>
+
+          <?php 
+                while($listat=mysqli_fetch_assoc($tarefas)){
+                      $nome=$listat['designacao'];
+                      $estado=$listat['estado'];
+                      $datac=$listat['data_conclusao'];
+                      $projeto=$listat['projeto'];
+
+                      echo " <tr>
+                          <td>$nome</td>
+                          <td>$estado</td>
+                          <td>$datac</td>
 
 
-            </tr>
+                        </tr>";
+                }
+
+
+            ?>
+           
           </tbody>
         </table>
 

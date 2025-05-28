@@ -6,6 +6,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Projectos</title>
 
+      <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
      <link rel="stylesheet" href="dasboard.css">
      <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -132,11 +133,33 @@ FROM  projetos JOIN tarefas ON(projetos.id=tarefas.id_projeto);";
                                              <td>$projeto</td>
                                              <td>
                                              <div>
-                                    <form action='../controller/tarefaController/deleteTarefa.php' method='post'>
-                                        <input type='hidden' value='$id' name='idcode'>
-                                         <button type=submit class=apagar><i class=bxr  bx-trash-x></i> Apagar</button>
+                                  
+ <button type='button' class=apagar  data-bs-toggle='modal' data-bs-target='#exampleModal$id'><i class=bxr  bx-trash-x></i> Apagar</button>
+<div class='modal fade' id='exampleModal$id' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' >
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='exampleModalLabel'>Desejas  apagar a tarefa $nome ?</h5>
+        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+      </div>
+      <div class='modal-body'>
+
+             
+        <form action='../controller/tarefaController/deleteTarefa.php' method='post'>
+           <input type='hidden' value='$id' name='idcode'>
+     <div class='modal-footer' style='display:flex;'>
+        <button type='button' class='btn btn-primary' data-bs-dismiss='modal'>Não</button>
+        <button type='submit' class='btn btn-danger'>Sim</button>
+      </div>               
                                                        
-                                   </form>
+      </form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+
                                    <form action='../controller/tarefaController/updateTarefa.php' method='post'>
                                         <input type='hidden' value='$id' name='idcode'>
                                       
@@ -164,5 +187,5 @@ FROM  projetos JOIN tarefas ON(projetos.id=tarefas.id_projeto);";
      </div>
 
 </body>
-
+<script src="../bootstrap/js/bootstrap.js"></script>
 </html>

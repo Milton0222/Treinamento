@@ -6,6 +6,7 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Projectos</title>
 
+     <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
      <link rel="stylesheet" href="dasboard.css">
      <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -75,6 +76,24 @@
 
                </div>
                <div class="graficos1">
+                    <!-- Modal 
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+  <div class="modal-dialog" >
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>-->
                      <table class="table" style="margin-top: 0px;">
                            <thead>
                               <?php 
@@ -112,6 +131,7 @@
                               <th>Metódo</th>
                          </thead>
                          <tbody>
+                           
                              
                               <?php
 
@@ -133,11 +153,41 @@
                                           
                                              <td>
                                              <div>
-                                    <form action='../controller/grupoController/deleteGrupo.php' method='post'>
-                                        <input type='hidden' value='$id' name='idcode'>
-                                         <button type=submit class=apagar><i class=bxr  bx-trash-x></i> Apagar</button>
+                                             <form action='grupoPessoal.php' method='post'>
+                                                   <input type='hidden' name='idGrupo' value=$id>
+                                                    <button type='submit' class='pessoal' >Ver</button>
+                                               </form>
+                                                <form action='addPessoal.php' method='post'>
+                                                   <input type='hidden' name='idGrupo' value=$id>
+                                                    <button type='submit' class='pessoal' >Pessoal</button>
+                                               </form>
+                                          
+                                             <button type='button' class=apagar  data-bs-toggle='modal' data-bs-target='#exampleModal$id'><i class=bxr  bx-trash-x></i> Apagar</button>
+<div class='modal fade' id='exampleModal$id' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' >
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h5 class='modal-title' id='exampleModalLabel'>Desejas  apagar o grupo $nome ?</h5>
+        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+      </div>
+      <div class='modal-body'>
+
+             
+        <form action='../controller/grupoController/deleteGrupo.php' method='post'>
+           <input type='hidden' value='$id' name='idcode'>
+     <div class='modal-footer' style='display:flex;'>
+        <button type='button' class='btn btn-primary' data-bs-dismiss='modal'>Não</button>
+        <button type='submit' class='btn btn-danger'>Sim</button>
+      </div>               
                                                        
-                                   </form>
+      </form>
+
+      </div>
+      
+    </div>
+  </div>
+</div>
+                                    
                                    <form action='../controller/grupoController/updateGrupo.php' method='post'>
                                         <input type='hidden' value='$id' name='idcode'>
                                       
@@ -165,5 +215,9 @@
      </div>
 
 </body>
+<script src="../bootstrap/js/bootstrap.js"></script>
 
 </html>
+
+
+

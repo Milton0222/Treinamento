@@ -9,8 +9,15 @@
 
      $verificar=mysqli_query($conector,$sql);
 
-     $sql="INSERT INTO users (userName,passwords,tipo) value('$nome','1234-2025','$funcao');";
+     if($funcao=='gestor'){
+         $sql="INSERT INTO users (userName,passwords,tipo) value('$nome','1234-2025','admin');";
          $user=mysqli_query($conector,$sql);
+     }else{
+          $sql="INSERT INTO users (userName,passwords,tipo) value('$nome','1234-2025','$funcao');";
+         $user=mysqli_query($conector,$sql);
+     }
+
+    
 
 
      mysqli_close($conector);
