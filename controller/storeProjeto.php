@@ -15,7 +15,7 @@ $code1=mysqli_insert_id($conector);
 
 
 $sql = "INSERT INTO projetos (designacao,descricao,duracao,data_inicio,data_conclusao,empresa_id,id)
- VALUES('$nome','$texto',$duracao,'$inicio','$fim',$id_empresa,$cod1+$duracao);";
+ VALUES('$nome','$texto',$duracao,'$inicio','$fim',$id_empresa,$id_empresa+$duracao);";
 
 //inserir dados na bd 
 

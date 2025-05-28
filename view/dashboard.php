@@ -19,6 +19,8 @@
               <?php 
                   include_once('../controller/conexao.php');
 
+                  
+
                        $sql="SELECT tarefas.id, tarefas.designacao, tarefas.estado,tarefas.data_inicio,tarefas.data_conclusao,
                                    pessoal.id AS 'pessoa_id', pessoal.nome, projetos.designacao AS 'projeto'
                              FROM tarefas JOIN pessoal_tarefas ON(tarefas.id=pessoal_tarefas.tarefa_id)
@@ -28,11 +30,19 @@
 
                           $tarefas=mysqli_query($conector,$sql);
 
-                          $qlq="SELECT COUNT(*) AS 'qtd' FROM projetos;";
+                          $sql="SELECT *FROM projetos;";
 
                              $projetos=mysqli_query($conector,$sql);
 
-                          
+                          $sql1="SELECT *FROM pessoal;";
+                            $pessoal=mysqli_query($conector,$sql1);
+
+
+
+                                $qtdpprojetos=mysqli_num_rows($projetos);
+
+                                 $qtdtarefas=mysqli_num_rows($tarefas);
+                                 $qtdpessoal=mysqli_num_rows($pessoal);
                                  
 
 
@@ -83,7 +93,7 @@
                 <a href=""><i class='bxr  bx-community'></i></a>
               </div>
               <div>
-                <h1>+1</h1>
+                <h1>+<?php echo $qtdpessoal; ?> </h1>
               </div>
             </div>
             <hr>
@@ -95,7 +105,7 @@
                 <a href=""><i class='bxr  bx-list-square'  ></i></a>
               </div>
               <div>
-                <h1>+1</h1>
+                <h1>+<?php  echo $qtdpprojetos; ?></h1>
               </div>
             </div>
             <hr>
@@ -107,7 +117,7 @@
                 <a href=""><i class='bxr  bx-calendar-check'></i></a>
               </div>
               <div>
-                <h1>+1 </h1>
+                <h1>+<?php echo $qtdtarefas; ?> </h1>
               </div>
             </div>
             <hr>

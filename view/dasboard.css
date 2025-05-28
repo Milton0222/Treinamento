@@ -136,7 +136,7 @@ body {
     color: white;
     box-shadow: 1px 2px rgb(3, 99, 190);
     border-radius: 20px;
-    height: 25px;
+    height: 50px;
     padding-top: 10px;
 }
 .principal .conteudo .menuEsquerdo .ativar:hover {
