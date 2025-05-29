@@ -45,10 +45,7 @@ FROM  projetos JOIN tarefas ON(projetos.id=tarefas.id_projeto);";
                               <option value="">Sair</option>
                          </select>
                     </div>
-
                </div>
-
-
           </div>
           <div class="conteudo">
                <div class="menuEsquerdo">
@@ -69,9 +66,9 @@ FROM  projetos JOIN tarefas ON(projetos.id=tarefas.id_projeto);";
                          <a href="pessoas.php">
                               <li><i class='bxr  bx-user'  ></i> <strong>Funcionarios</strong></li>
                          </a>
-                         <a href="">
-                              <li class="sair"><i class='bxr  bx-flower-alt-2'></i> <!--<strong>Definição</strong>--></li>
-                         </a>
+                         <a href="../controller/logout.php">
+            <li class="sair"><i class='bx  bx-arrow-out-up-square-half'></i> <!--<strong>Definição <i class='bxr  bx-flower-alt-2'></i></strong>--></li>
+          </a>
                     </ul>
 
                </div>

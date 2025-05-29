@@ -114,12 +114,13 @@ body {
     font-style: inherit;
     color: whitesmoke;
     text-decoration: wavy;
+     
     text-decoration-color: rgb(28, 110, 244);
 
 
 }
 
-.principal .conteudo .menuEsquerdo ul .sair {
+.principal .conteudo .menuEsquerdo ul .sair{
     margin-top: 90%;
     background: linear-gradient(rgb(3, 99, 190), rgb(255, 234, 100));
     text-align: center;
@@ -761,9 +762,15 @@ p {
     background-color: rgb(183, 6, 6);
   } 
 
-  /*  modal bootstrapp*/
+  /*  modal bootstrapp e graficos*/
 
 #myChart{
      height: 300px;
+}
+.relatorio{
+    display: flex;
+}
+.chart1{
+     width: 30%;
 }
   

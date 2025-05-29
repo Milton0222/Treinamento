@@ -1,5 +1,5 @@
-<?php 
- include_once("../controller/validar.php");
+<?php
+include_once("../controller/validar.php");
 
 ?>
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dashboard</title>
   <link rel="stylesheet" href="dasboard.css">
-    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+  <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body>
@@ -20,75 +20,115 @@
       <div class="user">
         <div class="dashboard">
           <a href="dashboard.php">DASHBOARD</a>
-              <?php 
-                  
-                
-                  include_once('../controller/conexao.php');
+          <?php
 
-                  
-                  
-                     $userm=$_SESSION['login'];
-                     $tipoU=$_SESSION['tipo'];
 
-                       $sql="SELECT tarefas.id, tarefas.designacao, tarefas.estado,tarefas.data_inicio,tarefas.data_conclusao,
+          include_once('../controller/conexao.php');
+
+
+
+          $userm = $_SESSION['login'];
+          $tipoU = $_SESSION['tipo'];
+
+          $sql = "SELECT tarefas.id, tarefas.designacao, tarefas.estado,tarefas.data_inicio,tarefas.data_conclusao,
                                    pessoal.id AS 'pessoa_id', pessoal.nome, projetos.designacao AS 'projeto'
                              FROM tarefas JOIN pessoal_tarefas ON(tarefas.id=pessoal_tarefas.tarefa_id)
   				                              	JOIN pessoal ON(pessoal.id=pessoal_tarefas.pessoa_id)
   					                              JOIN projetos ON(projetos.id=tarefas.id_projeto)
   	                       	ORDER BY  pessoal_tarefas.data_atribuicao	DESC ;";
 
-                          $tarefas=mysqli_query($conector,$sql);
+          $tarefas = mysqli_query($conector, $sql);
 
-                          $sql="SELECT *FROM projetos;";
+          $sql = "SELECT *FROM projetos;";
 
-                             $projetos=mysqli_query($conector,$sql);
+          $projetos = mysqli_query($conector, $sql);
 
-                          $sql1="SELECT *FROM pessoal;";
-                            $pessoal=mysqli_query($conector,$sql1);
+          $sql1 = "SELECT *FROM pessoal;";
+          $pessoal = mysqli_query($conector, $sql1);
 
 
 
-                                $qtdpprojetos=mysqli_num_rows($projetos);
+          $qtdpprojetos = mysqli_num_rows($projetos);
 
-                                 $qtdtarefas=mysqli_num_rows($tarefas);
-                                 $qtdpessoal=mysqli_num_rows($pessoal);
+          $qtdtarefas = mysqli_num_rows($tarefas);
+          $qtdpessoal = mysqli_num_rows($pessoal);
 
- 
-                    $funcionario=[];
-                    $qtd=[];                
 
-                                 $sqld="SELECT pessoal.nome, COUNT(tarefas.estado) AS 'qtd'
+          $funcionario = [];
+          $qtd = [];
+
+          $sqld = "SELECT pessoal.nome, COUNT(tarefas.estado) AS 'qtd'
       FROM pessoal JOIN pessoal_tarefas ON(pessoal.id=pessoal_tarefas.pessoa_id)
       				JOIN tarefas ON(tarefas.id=pessoal_tarefas.tarefa_id)	
       WHERE tarefas.estado='Feito'
       GROUP BY pessoal.nome;";
-         $pessoald=mysqli_query($conector,$sqld);
+          $pessoald = mysqli_query($conector, $sqld);
 
-            while($listad=mysqli_fetch_assoc($pessoald)){
-                  $funcionario[]=$listad['nome'];
-                  $qtd[]=$listad['qtd'];
+          while ($listad = mysqli_fetch_assoc($pessoald)) {
+            $funcionario[] = $listad['nome'];
+            $qtd[] = $listad['qtd'];
+          }
 
-            }
-            
-            /*Converter vector*/
+          /*Converter vector*/
 
-                $nomeP1=implode("','",$funcionario);
-                $qtdF=implode("','",$qtd);
+          $nomeP1 = implode("','", $funcionario);
+          $qtdF = implode("','", $qtd);
 
-                                 
+          /*Tarefas pendentes*/
+          $funcionarioP=[];
+          $qtdP=[];
+
+               $sqld = "SELECT pessoal.nome, COUNT(tarefas.estado) AS 'qtd'
+      FROM pessoal JOIN pessoal_tarefas ON(pessoal.id=pessoal_tarefas.pessoa_id)
+      				JOIN tarefas ON(tarefas.id=pessoal_tarefas.tarefa_id)	
+      WHERE tarefas.estado='Pendente'
+      GROUP BY pessoal.nome;";
+          $pessoalP = mysqli_query($conector, $sqld);
+
+          while ($listad = mysqli_fetch_assoc($pessoalP)) {
+            $funcionarioP[] = $listad['nome'];
+            $qtdP[] = $listad['qtd'];
+          }
+
+          $nomeTP = implode("','", $funcionarioP);
+          $qtdTP = implode("','", $qtdP);
 
 
-                          mysqli_close($conector);
+          /** tarefas em execucao */
+
+          /*Tarefas pendentes*/
+          $funcionarioE=[];
+          $qtdE=[];
+
+               $sqld = "SELECT pessoal.nome, COUNT(tarefas.estado) AS 'qtd'
+      FROM pessoal JOIN pessoal_tarefas ON(pessoal.id=pessoal_tarefas.pessoa_id)
+      				JOIN tarefas ON(tarefas.id=pessoal_tarefas.tarefa_id)	
+      WHERE tarefas.estado='Fazendo'
+      GROUP BY pessoal.nome;";
+          $pessoalE = mysqli_query($conector, $sqld);
+
+          while ($listad = mysqli_fetch_assoc($pessoalE)) {
+            $funcionarioE[] = $listad['nome'];
+            $qtdE[] = $listad['qtd'];
+          }
+
+          $nomeTE = implode("','", $funcionarioE);
+          $qtdTE = implode("','", $qtdE);
 
 
-              ?>
+
+
+          mysqli_close($conector);
+
+
+          ?>
         </div>
         <div class="perfil">
-              <select name="" id="" disabled>
-                <option value="" selected ><?php print $userm;?></option>
-                <option value="">Definição</option>
-                <option> <a href="index.php"></a>Sair</option>
-              </select>
+          <select name="" id="" disabled>
+            <option value="" selected><?php print $userm; ?></option>
+            <option value="">Definição</option>
+            <option> <a href="index.php"></a>Sair</option>
+          </select>
         </div>
       </div>
     </div>
@@ -99,26 +139,26 @@
         </a>
         <ul>
 
-                         <a href="grupos.php">
-                              <li> <i class='bxr  bx-community'></i> <strong>Grupos</strong></li>
-                         </a>
-                         <a href="tarefas.php">
-                              <li><i class='bxr  bx-calendar-check'></i> <strong>Tarefas</strong></li>
-                         </a>
-                         <a href="projectos.php">
-                              <li><i class='bxr  bx-list-square'  ></i> <strong>Projetos</strong></li>
-                         </a>
-                      <?php    
-                         if($tipoU=='admin'){ 
-                         print "  
+          <a href="grupos.php">
+            <li> <i class='bxr  bx-community'></i> <strong>Grupos</strong></li>
+          </a>
+          <a href="tarefas.php">
+            <li><i class='bxr  bx-calendar-check'></i> <strong>Tarefas</strong></li>
+          </a>
+          <a href="projectos.php">
+            <li><i class='bxr  bx-list-square'></i> <strong>Projetos</strong></li>
+          </a>
+          <?php
+          if ($tipoU == 'admin') {
+            print "  
                          <a href='pessoas.php'>
                               <li><i class='bxr  bx-user'  ></i> <strong>Funcionarios</strong></li>
                          </a>";
-                         }
-                         ?>
-                         <a href="../controller/logout.php">
-                              <li class="sair"><i class='bx  bx-arrow-out-up-square-half'  ></i>  <!--<strong>Definição <i class='bxr  bx-flower-alt-2'></i></strong>--></li>
-                         </a>
+          }
+          ?>
+          <a href="../controller/logout.php">
+            <li class="sair"><i class='bx  bx-arrow-out-up-square-half'></i> <!--<strong>Definição <i class='bxr  bx-flower-alt-2'></i></strong>--></li>
+          </a>
         </ul>
 
       </div>
@@ -139,10 +179,10 @@
           <div class="item">
             <div class="info">
               <div>
-                <a href=""><i class='bxr  bx-list-square'  ></i></a>
+                <a href=""><i class='bxr  bx-list-square'></i></a>
               </div>
               <div>
-                <h1>+<?php  echo $qtdpprojetos; ?></h1>
+                <h1>+<?php echo $qtdpprojetos; ?></h1>
               </div>
             </div>
             <hr>
@@ -180,14 +220,32 @@
           </tbody>
         </table>
 
-    <div>
-      <div class="relatorio">
-        <canvas id="myChart"></canvas>
-        
+        <style>
+               .relatorio{
+                   display: flex;
+               }
+               .relatorio canvas{
+                   width: 100%;
+                   margin-right: 10px;
+               }
+        </style>
+          <div class="relatorio">
+            <div>
+              <canvas id="myChart" class="chart1"></canvas>
+            </div>
+            <div>
+              <canvas id="myChart1"></canvas>
 
-      </div>
-  
-</div>
+            </div>
+              
+
+          </div>
+           <div>
+              <canvas id="myChart2"></canvas>
+
+            </div>
+
+        
 
 
       </div>
@@ -200,25 +258,25 @@
           </thead>
           <tbody>
 
-          <?php 
-                while($listat=mysqli_fetch_assoc($tarefas)){
-                      $nome=$listat['designacao'];
-                      $estado=$listat['estado'];
-                      $datac=$listat['data_conclusao'];
-                      $projeto=$listat['projeto'];
+            <?php
+            while ($listat = mysqli_fetch_assoc($tarefas)) {
+              $nome = $listat['designacao'];
+              $estado = $listat['estado'];
+              $datac = $listat['data_conclusao'];
+              $projeto = $listat['projeto'];
 
-                      echo " <tr>
+              echo " <tr>
                           <td>$nome</td>
                           <td>$estado</td>
                           <td>$datac</td>
 
 
                         </tr>";
-                }
+            }
 
 
             ?>
-           
+
           </tbody>
         </table>
 
@@ -234,11 +292,11 @@
   new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: [ ' <?php echo $nomeP1; ?> '],
+      labels: [' <?php echo $nomeP1; ?> '],
       datasets: [{
         label: '#Tarefas Concluidas',
-        data: ['<?php echo $qtdF ;?>'],
-        backgroundColor:[' rgb(176, 161, 27)', 'Blue','green','red'],
+        data: ['<?php echo $qtdF; ?>'],
+        backgroundColor: [' rgb(176, 161, 27)', 'Blue', 'green', 'red'],
         borderWidth: 1
       }]
     },
@@ -254,13 +312,35 @@
   const ctx1 = document.getElementById('myChart1');
 
   new Chart(ctx1, {
-    type: 'line',
+    type: 'polarArea',
     data: {
-      labels: [ ' <?php echo $nomeP1; ?> '],
+      labels: [' <?php echo $nomeTE; ?> '],
       datasets: [{
-        label: '#Tarefas Concluidas',
-        data: ['<?php echo $qtdF ;?>'],
-        backgroundColor:[' rgb(176, 161, 27)', 'Blue','green','red'],
+        label: '#Tarefas Em Execução',
+        data: ['<?php echo $qtdTE; ?>'],
+        backgroundColor: [' rgb(24, 114, 28)', 'Blue', 'green', 'red'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx2 = document.getElementById('myChart2');
+
+  new Chart(ctx2, {
+    type: 'bar',
+    data: {
+      labels: [' <?php echo $nomeTP; ?> '],
+      datasets: [{
+        label: '#Tarefas Pendentes',
+        data: ['<?php echo $qtdTP; ?>'],
+        backgroundColor: [' rgb(205, 6, 9)', 'Blue', 'green', 'red'],
         borderWidth: 1
       }]
     },
