@@ -21,6 +21,7 @@
                          <a href="dashboard.php">DASHBOARD</a>
 
                          <?php
+                         require_once("../controller/validar.php");
                          require_once("../controller/conexao.php");
 
                            $sql = "SELECT *FROM pessoal;";
@@ -128,14 +129,18 @@
                                              <td>$contato</td>
                                              <td>
                                              <div>
-                                                   
+                                                   <form action='funcionarioTarefas.php' method='post'>
+                                                  <input type='hidden' value='$id' name='idcode'>
+                                      
+                                                        <button type=submit class=atualizar><i class=bxr bx-pencil-square></i>Tarefas</button>
+                                   </form> 
 
 <button type='button' class=apagar  data-bs-toggle='modal' data-bs-target='#exampleModal$id'><i class=bxr  bx-trash-x></i> Apagar</button>
 <div class='modal fade' id='exampleModal$id' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' >
   <div class='modal-dialog'>
     <div class='modal-content'>
       <div class='modal-header'>
-        <h5 class='modal-title' id='exampleModalLabel'>Desejas  apagar o projecto $nome ?</h5>
+        <h5 class='modal-title' id='exampleModalLabel'>Desejas  apagar o sr(a) $nome ?</h5>
         <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
       </div>
       <div class='modal-body'>

@@ -11,16 +11,16 @@
          
          <div class="formulario">
    
-         <form action="dashboard.php" method="get">
+         <form action="../controller/auth.php" method="Post">
    
                    
                     <div>
                        <label for="">UserName</label><br>
-                       <input type="email" name="nome" id="" maxlength="20" minlength="5" required placeholder="">
+                       <input type="text" name="nome"  required>
                     </div>
                     <div>
                        <label for="">Passsword</label><br>
-                       <input type="password" name="duracao" id="" >
+                       <input type="password" name="password" id="" required>
                     </div>
                     
    

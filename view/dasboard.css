@@ -763,5 +763,7 @@ p {
 
   /*  modal bootstrapp*/
 
-
+#myChart{
+     height: 300px;
+}
   

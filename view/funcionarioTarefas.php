@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcionarios</title>
+
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="dasboard.css">
+    <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
+</head>
+
+<body>
+
+    <div class="principal">
+
+        <div class="menuSuperio">
+            <div class="user">
+                <div class="dashboard">
+                    <a href="dashboard.php">DASHBOARD</a>
+
+                    <?php
+                    require_once("../controller/conexao.php");
+
+                    $id_funcionario = $_POST['idcode'];
+
+                    $sql = "SELECT *FROM pessoal;";
+
+                    $resultado = mysqli_query($conector, $sql);
+
+                    $sql = "SELECT *FROM empresas LIMIT 1;";
+
+                    $empresa = mysqli_query($conector, $sql);
+
+                    $totalregisto = mysqli_num_rows($resultado);
+
+
+                    $sql = "SELECT tarefas.id, tarefas.designacao, tarefas.estado,tarefas.data_inicio,tarefas.data_conclusao,
+                                   pessoal.id AS 'pessoa_id', pessoal.nome, projetos.designacao AS 'projeto'
+                             FROM tarefas JOIN pessoal_tarefas ON(tarefas.id=pessoal_tarefas.tarefa_id)
+  				                              	JOIN pessoal ON(pessoal.id=pessoal_tarefas.pessoa_id)
+  					                              JOIN projetos ON(projetos.id=tarefas.id_projeto)
+                            WHERE pessoal.id=$id_funcionario
+  	                       	ORDER BY  pessoal_tarefas.data_atribuicao	DESC ;";
+
+                    $tarefas = mysqli_query($conector, $sql);
+
+                    ?>
+                </div>
+                <div class="perfil">
+                    <select name="" id="">
+                        <option value="" selected>UserName</option>
+                        <option value="">Definição</option>
+                        <option value="">Sair</option>
+                    </select>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="conteudo">
+            <div class="menuEsquerdo">
+                <a href="index.php">
+                    <li class="ativar"><strong>Home</strong></li>
+                </a>
+                <ul>
+
+                    <a href="grupos.php">
+                        <li> <i class='bxr  bx-community'></i> <strong>Grupos</strong></li>
+                    </a>
+                    <a href="tarefas.php">
+                        <li><i class='bxr  bx-calendar-check'></i> <strong>Tarefas</strong></li>
+                    </a>
+                    <a href="projectos.php">
+                        <li><i class='bxr  bx-list-square'></i> <strong>Projetos</strong></li>
+                    </a>
+                    <a href="pessoas.php">
+                        <li><i class='bxr  bx-user'></i> <strong>Funcionarios</strong></li>
+                    </a>
+                    <a href="">
+                        <li class="sair"><i class='bxr  bx-flower-alt-2'></i> <!--<strong>Definição</strong>--></li>
+                    </a>
+                </ul>
+
+            </div>
+            <div class="graficos1">
+                <table class="table" style="margin-top: 0px;">
+                    <thead>
+                        <?php
+                        while ($listae = mysqli_fetch_assoc($empresa)) {
+                            $firma = $listae['designacao'];
+                            $email = $listae['objectivo'];
+                            $nif = $listae['nif'];
+                            $telefone = $listae['contacto'];
+
+                            echo " <th>Firma: <td>$firma</td></th><th>NIF: <td>$nif</td></th><th>Contacto: <td>$telefone</td></th><th>Objectivo: <td>$email</td></th>";
+                        }
+                        ?>
+
+                    </thead>
+
+                </table>
+                <form action="" method="get" class="form">
+                    <h3>GESTÃO DE TAREFAS</h3>
+                    <a href="pessoaCriar.php"><strong>+</strong></a>
+                    <div class="gsearch">
+
+                        <input type="text" name="search" placeholder="Informe o parametro de pesquisa" required>
+                        <button type="submit">Buscar</button>
+
+                    </div>
+                </form>
+                <table class="table">
+                    <thead>
+                        <th>id</th>
+                        <th>Nome</th>
+                        <th>Projecto</th>
+                        <th>Estado</th>
+                        <th>Data Inicio</th>
+                        <th>Data Fim</th>
+
+
+                        <th>Metódo</th>
+                    </thead>
+                    <tbody>
+
+
+
+                        <?php
+
+                        while ($dados = mysqli_fetch_assoc($tarefas)) {
+                            $id = $dados['id'];
+                            $nome = $dados['designacao'];
+                            $estado = $dados['estado'];
+                            $projeto = $dados['projeto'];
+                            $data_inicio = $dados['data_inicio'];
+                            $data_conclusao = $dados['data_conclusao'];
+
+
+
+
+                            echo "  <tr>
+                                             <td>$id</td>
+                                             <td>$nome</td>
+                                             <td>$projeto</td>
+                                             <td>$estado</td>
+                                             <td>$data_inicio</td>
+                                             <td>$data_conclusao</td>
+                                             <td>
+                                             <div>
+                                                   
+
+                                    <button type='button' class=apagar  data-bs-toggle='modal' data-bs-target='#exampleModal$id'><i class=bxr  bx-trash-x></i> Apagar</button>
+                                    <div class='modal fade' id='exampleModal$id' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' >
+                                    <div class='modal-dialog'>
+                                        <div class='modal-content'>
+                                        <div class='modal-header'>
+                                            <h5 class='modal-title' id='exampleModalLabel'>Desejas  apagar esta tarefa $nome ?</h5>
+                                            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                                        </div>
+                                        <div class='modal-body'>
+
+                                                
+                                            <form action='../controller/tarefaController/deleteTarefa.php' method='post'>
+                                            <input type='hidden' value='$id' name='idcode'>
+                                                
+                                        <div class='modal-footer' style='display:flex;'>
+                                            <button type='button' class='btn btn-primary' data-bs-dismiss='modal'>Não</button>
+                                            <button type='submit' class='btn btn-danger'>Sim</button>
+                                        </div>               
+                                                                                        
+                                        </form>
+
+                                        </div>
+                                        
+                                        </div>
+                                    </div>
+                                    </div>
+
+                                
+                                      
+                            <button type='button' class=atualizar data-bs-toggle='modal' data-bs-target='#estado$id'><i class=bxr bx-pencil-square></i>Atualizar</button>
+
+                                <div class='modal fade' id='estado$id' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' >
+                                    <div class='modal-dialog'>
+                                        <div class='modal-content'>
+                                        <div class='modal-header'>
+                                            <h5 class='modal-title' id='exampleModalLabel'>Modificar o estado da tarefa $nome ?</h5>
+                                            <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'></button>
+                                        </div>
+                                        <div class='modal-body'>
+
+                                        <form action='../controller/tarefaController/updateTarefa.php' method='post'>
+                                            <input type='hidden' value='$id' name='idcode'>
+                                            <select name='estado' class='form-control' required>
+                                                    <option >Selecionar</option>
+                                                    <option value='Fazendo'>Fazendo</option>
+                                                    <option value='Feito'>Feito</option>
+                                                    <option value='Pendente'>Pendente</option>
+                                                </select>
+                                             
+                                        <div class='modal-footer' style='display:flex;'>
+                                            <button type='button' class='btn btn-primary' data-bs-dismiss='modal'>Não</button>
+                                            <button type='submit' class='btn btn-danger'>Sim</button>
+                                        </div>               
+                                                                                        
+                                        </form>
+
+                                        </div>
+                                        
+                                        </div>
+                                    </div>
+                                    </div>
+
+
+                                               </div>
+                                                      
+                                             </td>
+                                             
+
+                                        </tr>";
+                        }
+
+                        mysqli_close($conector);
+                        ?>
+                    </tbody>
+                </table>
+                <td class="grupo-metodo">
+
+                </td>
+
+            </div>
+
+        </div>
+    </div>
+
+</body>
+<script src="../bootstrap/js/bootstrap.js"></script>
+
+</html>

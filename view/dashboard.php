@@ -1,3 +1,7 @@
+<?php 
+ include_once("../controller/validar.php");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,9 +21,14 @@
         <div class="dashboard">
           <a href="dashboard.php">DASHBOARD</a>
               <?php 
+                  
+                
                   include_once('../controller/conexao.php');
 
                   
+                  
+                     $userm=$_SESSION['login'];
+                     $tipoU=$_SESSION['tipo'];
 
                        $sql="SELECT tarefas.id, tarefas.designacao, tarefas.estado,tarefas.data_inicio,tarefas.data_conclusao,
                                    pessoal.id AS 'pessoa_id', pessoal.nome, projetos.designacao AS 'projeto'
@@ -43,6 +52,29 @@
 
                                  $qtdtarefas=mysqli_num_rows($tarefas);
                                  $qtdpessoal=mysqli_num_rows($pessoal);
+
+ 
+                    $funcionario=[];
+                    $qtd=[];                
+
+                                 $sqld="SELECT pessoal.nome, COUNT(tarefas.estado) AS 'qtd'
+      FROM pessoal JOIN pessoal_tarefas ON(pessoal.id=pessoal_tarefas.pessoa_id)
+      				JOIN tarefas ON(tarefas.id=pessoal_tarefas.tarefa_id)	
+      WHERE tarefas.estado='Feito'
+      GROUP BY pessoal.nome;";
+         $pessoald=mysqli_query($conector,$sqld);
+
+            while($listad=mysqli_fetch_assoc($pessoald)){
+                  $funcionario[]=$listad['nome'];
+                  $qtd[]=$listad['qtd'];
+
+            }
+            
+            /*Converter vector*/
+
+                $nomeP1=implode("','",$funcionario);
+                $qtdF=implode("','",$qtd);
+
                                  
 
 
@@ -52,8 +84,8 @@
               ?>
         </div>
         <div class="perfil">
-              <select name="" id="">
-                <option value="" selected>UserName</option>
+              <select name="" id="" disabled>
+                <option value="" selected ><?php print $userm;?></option>
                 <option value="">Definição</option>
                 <option> <a href="index.php"></a>Sair</option>
               </select>
@@ -76,11 +108,16 @@
                          <a href="projectos.php">
                               <li><i class='bxr  bx-list-square'  ></i> <strong>Projetos</strong></li>
                          </a>
-                         <a href="pessoas.php">
+                      <?php    
+                         if($tipoU=='admin'){ 
+                         print "  
+                         <a href='pessoas.php'>
                               <li><i class='bxr  bx-user'  ></i> <strong>Funcionarios</strong></li>
-                         </a>
-                         <a href="">
-                              <li class="sair"><i class='bxr  bx-flower-alt-2'></i> <!--<strong>Definição</strong>--></li>
+                         </a>";
+                         }
+                         ?>
+                         <a href="../controller/logout.php">
+                              <li class="sair"><i class='bx  bx-arrow-out-up-square-half'  ></i>  <!--<strong>Definição <i class='bxr  bx-flower-alt-2'></i></strong>--></li>
                          </a>
         </ul>
 
@@ -127,10 +164,10 @@
 
         <table class="table">
           <thead>
-            <th>Projecto</th>
-            <th>Data de Inicio</th>
-            <th>Dias em Falta</th>
-            <th>Data de conclusão</th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
           </thead>
           <tbody>
             <tr>
@@ -142,6 +179,16 @@
             </tr>
           </tbody>
         </table>
+
+    <div>
+      <div class="relatorio">
+        <canvas id="myChart"></canvas>
+        
+
+      </div>
+  
+</div>
+
 
       </div>
       <div class="detalhesDireito">
@@ -180,5 +227,52 @@
   </div>
 
 </body>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+  const ctx = document.getElementById('myChart');
+
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [ ' <?php echo $nomeP1; ?> '],
+      datasets: [{
+        label: '#Tarefas Concluidas',
+        data: ['<?php echo $qtdF ;?>'],
+        backgroundColor:[' rgb(176, 161, 27)', 'Blue','green','red'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
+  const ctx1 = document.getElementById('myChart1');
+
+  new Chart(ctx1, {
+    type: 'line',
+    data: {
+      labels: [ ' <?php echo $nomeP1; ?> '],
+      datasets: [{
+        label: '#Tarefas Concluidas',
+        data: ['<?php echo $qtdF ;?>'],
+        backgroundColor:[' rgb(176, 161, 27)', 'Blue','green','red'],
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>
+
 
 </html>

@@ -21,6 +21,7 @@
                          <a href="dashboard.php">DASHBOARD</a>
 
                          <?php
+                         require_once("../controller/validar.php");
                          require_once("../controller/conexao.php");
 
                          $sql = "SELECT projetos.designacao AS 'projeto',tarefas.id,tarefas.designacao,
@@ -160,7 +161,7 @@ FROM  projetos JOIN tarefas ON(projetos.id=tarefas.id_projeto);";
   </div>
 </div>
 
-                                   <form action='../controller/tarefaController/updateTarefa.php' method='post'>
+                                   <form action='' method='post'>
                                         <input type='hidden' value='$id' name='idcode'>
                                       
                                                         <button type=submit class=atualizar><i class=bxr bx-pencil-square></i>Atualizar</button>

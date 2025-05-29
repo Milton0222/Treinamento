@@ -21,6 +21,7 @@
                          <a href="dashboard.php">DASHBOARD</a>
 
                          <?php
+                         require_once("../controller/validar.php");
                          require_once("../controller/conexao.php");
 
                          $sql = "SELECT *FROM projetos;";
